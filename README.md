@@ -5,7 +5,7 @@ Fazer fork do repositório, instalar o flask `pip install flask` e executar o fi
 Ver funcionamento do website em  `http://localhost:8000/`.
 
 ## Como foi feito?
-Utilizando flask, rest, utilização de FlaskSession para fazer o controlo de utilizadores e aplicação de boostrap para o design do mesmo.
+O projeto foi desenvolvido em flas e rest, utilização de FlaskSession para fazer o controlo de utilizadores e aplicação de boostrap para o design do mesmo.
 
 ## Projeto Desenvolvido por:
 `Joao Rosete`
