@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Projects/Tasks</title>
+
+    <style>
+        body{
+            background-image: url("static/img/login-background.jpg");
+            background-repeat: no-repeat, repeat;
+            background-size: cover;
+            height: 951px;
+        }
+    </style>
+    <script>
+        function delayModal(){
+            setTimeout(function(){
+                $("#MyModal").modal('show');
+           }, 200);
+        }
+
+        function delayModal2(){
+            setTimeout(function(){
+                $("#Modal_Show_Info_Project").modal('show');
+           }, 200);
+        }
+    </script>
+{% endblock %}
+
+
+{% block body %}
+     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow show">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user['username'] }}</span>
+                <img class="img-profile rounded-circle" src="static/img/person.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/profile">
+                  <i class="fa fa-user text-gray-400" aria-hidden="true"></i>
+                  <span class="profile_menu" style="margin-left: 10px;">Profile</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout">
+                  <i class="fa fa-sign-out text-gray-400" aria-hidden="true"></i>
+                  <span class="logout-menu" style="margin-left: 10px;">Logout</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-6">
+
+               <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h6 class="m-0 font-weight-bold text-primary" style="font-size: 18px;margin-top: 7px !important;">Projects</h6>
+                            </div>
+
+                             <div class="col-lg-3" style="display:none">
+                                <form id="fetch_projects">
+                                    <input type="hidden" name="username"  id="username-fetch-info" value="{{user['username']}}">
+                                    <input type="hidden" name="password" id="password-fetch-info" value="{{user['password']}}">
+                                    <input type="button" value="Load Projects" onclick="fetchProjects()">
+                                </form>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <button class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#Modal_Add_Project">
+                                    <span class="icon text-white-50">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <span class="text">Add Project</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body" style="height: 700px; overflow-y: scroll;">
+                        <div class="row" id="dump_projects_info">
+
+                        </div>
+
+                    </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+               <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                 <h6 class="m-0 font-weight-bold text-primary" style="font-size: 18px;margin-top: 7px !important;">Tasks</h6>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <button class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#Modal_Add_Task" onclick="loadInfoForInsertTask()">
+                                    <span class="icon text-white-50">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <span class="text">Add Task</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="height: 700px; overflow-y: scroll;">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="no_tasks_found" id="no_tasks_found">Load Tasks from a Project</span>
+                            </div>
+                        </div>
+                        <div class="row" id="dump_project_tasks_info">
+
+                        </div>
+
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Task Information -->
+    <div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="title_one"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form_updateTask">
+                <div class="row">
+                    <input class="input-form noHover new_input_form" type="hidden" name="id">
+                    <div class="col-lg-5">
+                        <div class="wrap-input">
+                            <span class="information-text">Title</span>
+                             <input class="input-form noHover new_input_form" id="task_id" type="hidden" name="id" >
+                            <input class="input-form noHover new_input_form" id="task_title" type="text" name="title">
+                            <span class="symbol-input-form ">
+                               <i class="fa fa-tasks icon_thing" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                     <div class="col-lg-5">
+                           <div class="wrap-input">
+                                <span class="information-text">Creation Date</span>
+                                <input class="input-form noHover new_input_form" id="creation_date" type="text" name="creation_date">
+                                <span class="symbol-input-form ">
+                                   <i class="fa fa-calendar-o icon_thing" aria-hidden="true"></i>
+                                </span>
+                           </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <div class="wrap-input" style="margin-top: 20px;">
+                                <span class="information-text">Project</span>
+                                <select class="form-control" id="project" name="project">
+
+                                </select>
+                         </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <div class="wrap-input" style="margin-top: 20px;">
+                                <span class="information-text">Completed</span>
+                                <select class="form-control" id="completed" name="completed">
+                                     <option value="1">True</option>
+                                     <option value="0">False</option>
+                                </select>
+                         </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <input class="login-form-btn" value="UPDATE TASK" style="width: 200px;height: 40px;margin-top: 30px;margin-left: 270px;" type="button" onclick="updateTask()">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Add Task -->
+    <div class="modal fade" id="Modal_Add_Task" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="insert_task">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="wrap-input">
+                            <span class="information-text">Title</span>
+                            <input class="input-form noHover new_input_form" type="hidden" id="task_project_id" name="project_user_id">
+                            <input class="input-form noHover new_input_form" id="add_task_title" type="text" name="title">
+                            <span class="symbol-input-form ">
+                               <i class="fa fa-tasks icon_thing" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                     <div class="col-lg-5">
+                           <div class="wrap-input">
+                                <span class="information-text">Creation Date</span>
+                                <input class="input-form noHover new_input_form" id="add_creation_date" type="text" name="creation_date">
+                                <span class="symbol-input-form ">
+                                   <i class="fa fa-calendar-o icon_thing" aria-hidden="true"></i>
+                                </span>
+                           </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <div class="wrap-input" style="margin-top: 20px;">
+                                <span class="information-text">Project</span>
+                                <select class="form-control" id="add_task_project" name="project">
+                                    <option selected></option>
+                                </select>
+                         </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <div class="wrap-input" style="margin-top: 20px;">
+                                <span class="information-text">Completed</span>
+                                <select class="form-control" id="add_task_completed" name="completed">
+                                     <option value="1">True</option>
+                                     <option value="0">False</option>
+                                </select>
+                         </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <input class="login-form-btn" value="INSERT TASK" style="width: 200px;height: 40px;margin-top: 30px;margin-left: 270px;" type="button" onclick="addTask()">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Project Information -->
+    <div class="modal fade bd-example-modal-lg" id="Modal_Show_Info_Project" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="info_project_title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form_updateProject">
+                <div class="row">
+                    <input class="input-form noHover new_input_form" type="hidden" name="id">
+                    <div class="col-lg-5">
+                        <div class="wrap-input">
+                            <span class="information-text">Title</span>
+                            <input class="input-form noHover new_input_form" id="infoo_project_id" type="hidden" name="id" value="">
+                            <input class="input-form noHover new_input_form" id="infoo_project_title" type="text" name="title">
+                            <span class="symbol-input-form ">
+                               <i class="fa fa-tasks icon_thing" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                     <div class="col-lg-5">
+                           <div class="wrap-input">
+                                <span class="information-text">Creation Date</span>
+                                <input class="input-form noHover new_input_form" id="infoo_creation_date" type="text" name="creation_date">
+                                <span class="symbol-input-form ">
+                                   <i class="fa fa-calendar-o icon_thing" aria-hidden="true"></i>
+                                </span>
+                           </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <div class="wrap-input">
+                                <span class="information-text">Creation Date</span>
+                                <input class="input-form noHover new_input_form" id="infoo_last_updated" type="text" name="last_updated">
+                                <span class="symbol-input-form ">
+                                   <i class="fa fa-calendar-o icon_thing" aria-hidden="true"></i>
+                                </span>
+                           </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <input class="login-form-btn" value="UPDATE PROJECT" style="width: 200px;height: 40px;margin-top: 30px;margin-left: 270px;" type="button" onclick="updateProject()">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Add Project -->
+    <div class="modal fade" id="Modal_Add_Project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Project</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="insert_project">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="wrap-input">
+                            <span class="information-text">Title</span>
+                            <input class="input-form noHover new_input_form" type="hidden" id="project_user_id" name="project_user_id" value="{{ user['id'] }}">
+                            <input class="input-form noHover new_input_form" id="project_title" type="text" name="title">
+                            <span class="symbol-input-form ">
+                               <i class="fa fa-tasks icon_thing" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                     <div class="col-lg-5">
+                           <div class="wrap-input">
+                                <span class="information-text">Creation Date</span>
+                                <input class="input-form noHover new_input_form" id="project_creation_date" type="text" name="creation_date">
+                                <span class="symbol-input-form ">
+                                   <i class="fa fa-calendar-o icon_thing" aria-hidden="true"></i>
+                                </span>
+                           </div>
+                    </div>
+                     <div class="col-lg-5">
+                        <span class="information-text">Last Updated</span>
+                        <input class="input-form noHover new_input_form" id="project_last_updated" type="text" name="last_updated">
+                        <span class="symbol-input-form ">
+                           <i class="fa fa-calendar-o icon_thing" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="col-lg-12">
+                        <input class="login-form-btn" value="INSERT PROJECT" style="width: 200px;height: 40px;margin-top: 30px;margin-left: 270px;" type="button" onclick="addProject()">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

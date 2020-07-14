@@ -1,0 +1,444 @@
+/* ************************** */
+/* LOGIN PAGE (index.html)    */
+/* REGISTER PAGE (index.html) */
+/* ************************** */
+.login-container
+{
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+ }
+
+ .login-wrap
+ {
+    width: 960px;
+    background-color: rgb(36, 37, 37);
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 177px 130px 33px 95px;
+ }
+
+ .login-image
+ {
+    width: 316px;
+ }
+
+.login-image img
+{
+    margin-top: -100px;
+    margin-left: -570px;
+    max-width: 1500px;
+    position: absolute;
+}
+
+ .login-form
+ {
+    width: 290px;
+ }
+
+.login-form-title
+{
+    font-family: monospace;
+    font-size: 24px;
+    color: rgb(212, 207, 197);
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 54px;
+}
+
+.wrap-input
+{
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.input-form
+ {
+    font-family: monospace;
+    color: rgb(194, 188, 176);
+    background-image: initial;
+    background-color: rgb(42, 43, 44);
+}
+.input-form
+{
+    font-weight: bold;
+    color: rgb(194, 188, 176) !important;
+    font-size: 16px;
+    line-height: 1.5;
+    display: block;
+    width: 100%;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+    outline: none;
+}
+
+.symbol-input-form
+{
+    color: rgb(194, 188, 176) !important;
+}
+
+.symbol-input-form
+{
+    font-size: 1.3em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 35px;
+    pointer-events: none;
+    color: #666;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+
+.container-login-form-btn
+{
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.login-form-btn
+{
+    color: rgb(251, 247, 241);
+    background-image: initial;
+    background-color: rgb(69, 117, 57);
+}
+
+.login-form-btn
+{
+    font-family: monospace;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #57b846;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+    outline: none;
+}
+
+.login-form-btn:hover
+{
+    background-image: initial;
+    background-color: rgb(58, 60, 61);
+}
+
+.create-account
+{
+    padding-top: 136px;
+}
+
+.create-account-info
+{
+    color: rgb(194, 188, 176) !important;
+    font-family: monospace;
+    font-size: 15px;
+    FONT-WEIGHT: bold;
+    margin-left: -25px;
+}
+
+a.create-account-info:hover
+{
+    color: #57b846 !important;
+    text-decoration: none;
+}
+
+.alert-danger
+{
+    text-align: center;
+    font-size: 13px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    margin-top: 20px;
+}
+
+.dont-show{
+    margin-top: 10px;
+    margin-right: 20px;
+    position: absolute !important;
+    right: 0;
+    top: 0px;
+    font-family: monospace;
+}
+
+#register-success, #register-danger{
+    display: none;
+}
+/* ************************** */
+/* LOGIN PAGE (index.html)    */
+/* REGISTER PAGE (index.html) */
+/* ************************** */
+
+/* *************************************** */
+/* MAIN PAGE (user-projects-tasks.html)    */
+/* *************************************** */
+.h5.mb-1.project_title
+{
+    color: rgb(212, 207, 197) !important;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.project_info
+{
+    font-family: monospace;
+    font-size: 14px;
+}
+
+span.no-projects_found, span.no_tasks_found
+{
+    font-family: monospace;
+    font-size: 16px;
+    color: rgb(212, 207, 197) !important;
+}
+
+.card.shadow.mb-4, .card-header.py-3
+{
+    background-color: rgb(36, 37, 37);
+    border-color: rgb(70, 69, 67);
+}
+
+h6.m-0.font-weight-bold.text-primary
+{
+    color: rgb(212, 207, 197) !important;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.card.border-left-primary.shadow.h-100.py-2, .card.shadow.h-100.py-2
+{
+    background: rgb(36, 37, 37);
+    color: rgb(212, 207, 197) !important;
+    border-color: rgb(70, 69, 67);
+}
+
+.border-left-primary
+{
+    border-left: .25rem solid white !important;
+}
+
+nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+{
+    background-color: rgb(36, 37, 37) !important;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+a#userDropdown:hover
+{
+    background-color: rgb(43, 45, 45) !important;
+}
+
+button.load_tasks_button.btn.btn-primary.btn-icon-split
+{
+    margin-left: 20px;
+}
+
+/* width */
+::-webkit-scrollbar
+{
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track
+{
+  background: rgb(43, 45, 45) !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb
+{
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+{
+  background: #555;
+}
+
+.card.success.shadow.h-100.py-2
+{
+    background-color: rgb(44, 150, 109);
+    border-top-color: rgb(50, 176, 127);
+    border-right-color: rgb(50, 176, 127);
+    border-bottom-color: rgb(50, 176, 127);
+    border-left-color: rgb(50, 176, 127);
+}
+
+.card.danger.shadow.h-100.py-2
+<{
+    background-color: rgb(157, 47, 35);
+    border-top-color: rgb(166, 49, 37);
+    border-right-color: rgb(166, 49, 37);
+    border-bottom-color: rgb(166, 49, 37);
+    border-left-color: rgb(166, 49, 37);
+}
+
+
+button.delete_button.btn.btn-light.btn-icon-split, button.load_tasks_button.btn.btn-light.btn-icon-split
+{
+    color: rgb(207, 201, 190)  !important;
+    background-color: rgb(47, 49, 48) !important;
+    border-top-color: rgb(53, 65, 96) !important;
+    border-right-color: rgb(53, 65, 96) !important;
+    border-bottom-color: rgb(53, 65, 96) !important;
+    border-left-color: rgb(53, 65, 96) !important;
+}
+
+.modal-content
+{
+    color: rgb(212, 207, 197) !important;
+    font-family: monospace;
+    background-color: rgb(36, 37, 37) !important;
+    border-color: rgb(70, 69, 67) !important;
+    color: white !important;
+}
+
+.card.danger.shadow.h-100.py-2
+{
+    background-color: #d52a1a !important;
+    border-color: #ca2819 !important;
+}
+
+.close
+{
+    color: white !important;
+    text-decoration: none;
+}
+
+.form-control
+{
+    background-color: rgb(42, 43, 44) !important;
+    border: rgb(42, 43, 44) !important;
+    color: rgb(194, 188, 176) !important;
+
+}
+/* *************************************** */
+/* MAIN PAGE (user-projects-tasks.html)    */
+/* *************************************** */
+
+/* *************************************** */
+/* PROFILE PAGE (user_profile.html)        */
+/* *************************************** */
+.update_input
+{
+    margin-top: 10px;
+    font-weight: bold;
+    color: #5a5c69cc;
+    font-size: 16px;
+    line-height: 1.5;
+    display: block;
+    border-top-color: #4e73df!important;
+    border-right-color: #4e73df!important;
+    border-bottom-color: #4e73df!important;
+    border-left-color: #4e73df!important;
+    height: 39px;
+    border-radius: 25px;
+    padding: 0 30px 0 30px;
+    outline: none;
+    font-family: monospace
+}
+
+.information-text
+{
+    font-family: monospace;
+    font-size: 17px;
+    color: rgb(212, 207, 197) !important;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
+.new_input_form
+{
+    margin-top: 10px;
+    height: 44px !important;
+}
+
+.icon_thing
+{
+    margin-top: 34px;
+    margin-left: -10px;
+}
+
+span.title
+{
+    font-family: monospace;
+    font-size: 17px;
+    color: rgb(212, 207, 197) !important;
+    font-weight: bold;
+}
+
+span.information
+{
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    margin-left: 10px;
+}
+/* *************************************** */
+/* PROFILE PAGE (user_profile.html)        */
+/* *************************************** */

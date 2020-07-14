@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Register</title>
+    <style>
+        body{
+            background-image: url("static/img/login-background.jpg");
+            background-repeat: no-repeat, repeat;
+            background-size: cover;
+            height: 951px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="container-fluid login-container">
+        <div class="login-wrap">
+           <div class="row" style="width: 960px;">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="login-image">
+                            <img src="static/img/cd-lei.png" alt="cd-lei" style="margin-top: -70px" />
+                        </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                     <form class="login-form" id="register_form">
+                         <span class="login-form-title"> Register User </span>
+
+                          <div class="wrap-input">
+                            <input class="input-form noHover" type="text" name="name" placeholder="Name" required>
+                            <span class="symbol-input-form ">
+                               <i class="fa fa-address-card" aria-hidden="true"></i>
+                            </span>
+                          </div>
+
+                         <div class="wrap-input">
+                            <input class="input-form noHover" type="email" name="email" placeholder="Email" required>
+                            <span class="symbol-input-form ">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </span>
+                          </div>
+
+                         <div class="wrap-input">
+                            <input class="input-form noHover" type="text" name="username" placeholder="Username" required>
+                            <span class="symbol-input-form ">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                         </div>
+
+                          <div class="wrap-input">
+                            <input class="input-form noHover" type="password" name="password" placeholder="Password" required>
+                            <span class="symbol-input-form ">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                         </div>
+
+                         <div class="container-login-form-btn">
+                            <input class="login-form-btn" value="REGISTER" type="button" onclick="userRegister()">
+                         </div>
+                     </form>
+                    <div class="text-center create-account">
+                        <a class="create-account-info" href="/">
+                            Login
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+           </div>
+        </div>
+
+        <div class="alert alert-success alert-dismissible fade show dont-show" id="register-success" role="alert">
+          <span class="alert-text">User registered redirecting to Login</span>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible fade show dont-show" id="register-danger" role="alert">
+          <span class="alert-text">Something went wrong unable to register user</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" style="position: absolute;margin-top: -4px;margin-left: -10px;">&times;</span>
+          </button>
+        </div>
+    </div>
+
+{% endblock %}
