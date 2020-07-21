@@ -11,3 +11,5 @@ O projeto foi desenvolvido em flask e rest, utilização de FlaskSession para fa
 `Joao Rosete`
 `Francisco Zacarias `
 
+- Nota: 18
+
